@@ -1,0 +1,196 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Credit for the following css, all direct from the chatgpt site */
+
+:root {
+  --white: #fff;
+  --black: #000;
+  --gray-50: #f7f7f8;
+  --gray-100: #ececf1;
+  --gray-200: #d9d9e3;
+  --gray-300: #c5c5d2;
+  --gray-400: #acacbe;
+  --gray-500: #8e8ea0;
+  --gray-600: #565869;
+  --gray-700: #40414f;
+  --gray-800: #343541;
+  --gray-900: #202123;
+  --gray-950: #050509;
+  --gizmo-gray-500: #999;
+  --gizmo-gray-600: #666;
+  --gizmo-gray-950: #0f0f0f;
+  --brand-purple: #ab68ff
+}
+
+html {
+  --text-primary: var(--gizmo-gray-950);
+  --text-secondary: var(--gizmo-gray-600);
+  --text-tertiary: var(--gizmo-gray-500);
+  --surface-primary: var(--white);
+  --surface-secondary: var(--gray-50);
+  --surface-tertiary: var(--gray-100);
+  --border-light: rgba(0,0,0,.1);
+  --border-medium: rgba(0,0,0,.15);
+  --border-heavy: rgba(0,0,0,.2);
+  --border-xheavy: rgba(0,0,0,.25)
+}
+
+.dark {
+  --text-primary: var(--gray-100);
+  --text-secondary: var(--gray-300);
+  --text-tertiary: var(--gizmo-gray-500);
+  --surface-primary: var(--gray-900);
+  --surface-secondary: var(--gray-800);
+  --surface-tertiary: var(--gray-700);
+  --border-light: rgba(217,217,227,.1);
+  --border-medium: rgba(217,217,227,.15);
+  --border-heavy: rgba(217,217,227,.2);
+  --border-xheavy: rgba(217,217,227,.25)
+}
+
+textarea:focus {
+  border-color: inherit;
+  box-shadow: none;
+  outline: none
+}
+
+::-webkit-scrollbar {
+  height: 1rem;
+  width: .5rem
+}
+
+::-webkit-scrollbar:horizontal {
+  height: .5rem;
+  width: 1rem
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+  border-radius: 9999px
+}
+
+::-webkit-scrollbar-thumb {
+  --tw-border-opacity: 1;
+  background-color: rgba(217,217,227,.8);
+  border-color: rgba(255,255,255,var(--tw-border-opacity));
+  border-radius: 9999px;
+  border-width: 1px
+}
+
+::-webkit-scrollbar-thumb:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgba(217,217,227,var(--tw-bg-opacity))
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background-color: hsla(0,0%,100%,.1)
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background-color: hsla(0,0%,100%,.3)
+}
+
+
+.prose :where(ol):not(:where([class~=not-prose] *)) {
+  list-style-type: decimal;
+  margin-bottom: 1.25em;
+  margin-top: 1.25em;
+  padding-left: 1.625em
+}
+
+.prose :where(ol[type=A]):not(:where([class~=not-prose] *)) {
+  list-style-type: upper-alpha
+}
+
+.prose :where(ol[type=a]):not(:where([class~=not-prose] *)) {
+  list-style-type: lower-alpha
+}
+
+.prose :where(ol[type=A s]):not(:where([class~=not-prose] *)) {
+  list-style-type: upper-alpha
+}
+
+.prose :where(ol[type=a s]):not(:where([class~=not-prose] *)) {
+  list-style-type: lower-alpha
+}
+
+.prose :where(ol[type=I]):not(:where([class~=not-prose] *)) {
+  list-style-type: upper-roman
+}
+
+.prose :where(ol[type=i]):not(:where([class~=not-prose] *)) {
+  list-style-type: lower-roman
+}
+
+.prose :where(ol[type=I s]):not(:where([class~=not-prose] *)) {
+  list-style-type: upper-roman
+}
+
+.prose :where(ol[type=i s]):not(:where([class~=not-prose] *)) {
+  list-style-type: lower-roman
+}
+
+.prose :where(ol[type="1"]):not(:where([class~=not-prose] *)) {
+  list-style-type: decimal
+}
+
+.prose :where(ul):not(:where([class~=not-prose] *)) {
+  list-style-type: disc;
+  margin-bottom: 1.25em;
+  margin-top: 1.25em;
+  padding-left: 1.625em
+}
+
+.prose :where(ol>li):not(:where([class~=not-prose] *))::marker {
+  color: var(--tw-prose-counters);
+  font-weight: 400
+}
+
+
+#sidebar {
+  transition: width 0.3s;
+}
+#sidebarCollapse {
+  cursor: pointer;
+}
+.chat-input-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background-color: transparent;
+}
+.chat-input {
+  background-color: #2D3748; /* Tailwind gray-800 */
+  border-radius: 0.5rem; /* Tailwind rounded-md */
+}
+.chat-send-button {
+  background-color: #3182CE; /* Tailwind blue-500 */
+  border-radius: 0.5rem; /* Tailwind rounded-md */
+}
+
+
+.bg-token-surface-primary {
+  background-color: var(--gray-900)
+}
+
+.from-token-surface-primary {
+  --tw-gradient-from: var(--gray-900) var(--tw-gradient-from-position);
+  --tw-gradient-to: hsla(0,0%,100%,0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from),var(--tw-gradient-to)
+}
+
+.transition-opacity {
+  transition-duration: .15s;
+  transition-property: opacity;
+  transition-timing-function: cubic-bezier(.4,0,.2,1);
+}
+
+.hover-opacity-90:hover {
+  opacity: 0.9 !important; /* This will enforce the opacity level */
+}
+
+
