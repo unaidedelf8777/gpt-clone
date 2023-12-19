@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import ChatInput from './chatInput.tsx';
 import Sidebar from './sidebar/sideBar';
+import SidebarToggle from './sidebar/toggle';
 import './App.css';
-import './tailwind.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 
 
@@ -25,8 +25,8 @@ const App: React.FC = () => {
             {/* ... Content cards ... */}
           </div>
         </div>
-        {/* ChatInput section */}
         <div className="w-full">
+          <SidebarToggle onClick={toggleSidebar} isOpen={sidebarOpen} />
           <ChatInput />
         </div>
       </div>
