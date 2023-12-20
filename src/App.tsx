@@ -14,21 +14,22 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="flex h-screen">
+    <div className="relative z-0 flex h-full w-full overflow-hidden">
       <Sidebar sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
-      <div className="flex-1 flex flex-col p-10">
-        {/* Content section */}
-        <div className="flex-1 flex flex-col justify-center items-center">
-          <h1 className="text-2xl font-semibold mb-8">How can I help you today?</h1>
-          {/* Grid content, if any */}
-          <div className="grid grid-cols-2 gap-4 w-full">
-            {/* ... Content cards ... */}
-          </div>
-        </div>
-        <div className="w-full">
+      <div className="relative flex h-full max-w-full flex-1 flex-col overflow-hidden">
+        <main className="relative h-full w-full flex-1 overflow-auto transition-width">
           <SidebarToggle onClick={toggleSidebar} isOpen={sidebarOpen} />
-          <ChatInput />
-        </div>
+          <div className="flex h-full flex-col">
+            <div className="flex-1 overflow-hidden">
+              <div className="relative h-full">
+                <div className="flex h-full flex-col items-center justify-center">
+                  <div className="mb-5 text-2xl text-white font-medium">How can I help you today?</div>
+                </div>
+              </div>
+            </div>
+            <ChatInput />
+          </div>
+        </main>
       </div>
     </div>
   );
