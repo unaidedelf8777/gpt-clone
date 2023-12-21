@@ -1,16 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, KeyboardEvent } from 'react';
 import SendIcon from './assets/sendIcon';
 import './App.css';
 
-const ChatInput: React.FC = () => {
+
+interface ChatInputProps {
+    onSendMessage: (message: string) => void;
+  }
+  
+
+const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage }) => {
     const [message, setMessage] = useState<string>('');
 
-    const handleSendMessage = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        // Handle the sending message logic here
-        console.log(message);
-        setMessage(''); // Clear the input after sending
-    };
+    const handleSendMessage = () => {
+        if (message.trim()) {
+          onSendMessage(message);
+          setMessage('');
+        }
+      };
+    
+      const handleKeyPress = (event: KeyboardEvent<HTMLTextAreaElement>) => {
+        if (event.key === 'Enter' && !event.shiftKey) {
+          event.preventDefault();
+          handleSendMessage();
+        }
+      };
 
 
     return (
@@ -27,6 +40,7 @@ const ChatInput: React.FC = () => {
                                 className="m-0 w-full resize-none border-0 bg-transparent py-[10px] pr-10 focus:ring-0 focus-visible:ring-0 dark:bg-transparent md:py-3.5 md:pr-12 placeholder-black/50 dark:placeholder-white/50 pl-10 md:pl-[55px]"
                                 style={{ maxHeight: '200px', height: '52px', overflowY: 'hidden' }}
                                 value={message}
+                                onKeyDown={handleKeyPress}
                                 onChange={(e) => setMessage(e.target.value)}
                             />
 
@@ -45,7 +59,7 @@ const ChatInput: React.FC = () => {
                 </div>
             </form>
             <div className="relative px-2 py-2 text-center text-xs text-gray-600 dark:text-gray-300 md:px-[60px]">
-                <span>ChatGPT can make mistakes. Consider checking important information.</span>
+                <span>Language Models's can make mistakes. consider checking important information.</span>
             </div>
         </div>
     );

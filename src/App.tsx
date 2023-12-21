@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import ChatInput from './chatInput.tsx';
 import Sidebar from './sidebar/sideBar';
 import SidebarToggle from './sidebar/toggle';
 import './App.css';
-import '@fortawesome/fontawesome-free/css/all.css';
+import ChatDisplay from './chat/ChatDisplay.tsx';
 
 
 const App: React.FC = () => {
@@ -19,16 +18,8 @@ const App: React.FC = () => {
       <div className="relative flex h-full max-w-full flex-1 flex-col overflow-hidden">
         <main className="relative h-full w-full flex-1 overflow-auto transition-width">
           <SidebarToggle onClick={toggleSidebar} isOpen={sidebarOpen} />
-          <div className="flex h-full flex-col">
-            <div className="flex-1 overflow-hidden">
-              <div className="relative h-full">
-                <div className="flex h-full flex-col items-center justify-center">
-                  <div className="mb-5 text-2xl text-white font-medium">How can I help you today?</div>
-                </div>
-              </div>
-            </div>
-            <ChatInput />
-          </div>
+          <ChatDisplay />
+            
         </main>
       </div>
     </div>

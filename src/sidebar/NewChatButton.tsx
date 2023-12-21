@@ -6,10 +6,10 @@ interface NewChatButtonProps {
 
 const NewChatButton: React.FC<NewChatButtonProps> = ({ onClick }) => {
   return (
-    <div className="sticky left-0 right-0 top-0 z-20 bg-black pt-3.5">
-      <div className="pb-0.5 last:pb-0">
+    <div className="sticky left-0 right-0 top-0 bg-black pt-3.5 ">
+      <div className="pl-1 pb-0.5 last:pb-0 hover:bg-token-surface-primary cursor-pointer rounded-lg items-center justify-center border border-opacity-90">
         <button
-          className="group flex h-10 items-center gap-2 rounded-lg px-2 font-medium hover:bg-token-surface-primary text-white items-center "
+          className="group flex h-10 items-center gap-2 px-2 font-medium text-white items-center "
           onClick={onClick}
         >
           New Chat
