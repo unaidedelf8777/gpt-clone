@@ -1,18 +1,20 @@
 import React from 'react';
 
 export interface ChatEntry {
-  id: string;
+  chat_id: string;
+  user_id?: string; // If not used in the component, it can be removed from the interface
   title: string;
-  create_time: string;
-  update_time: string;
+  created_at: string;
+  updated_at: string;
+  first_message_id?: string | null; // Add this if needed, or remove if not used
 }
 
-const Chat: React.FC<ChatEntry> = ({ id, title, create_time, update_time  }) => {
+const Chat: React.FC<ChatEntry> = ({ chat_id, title, created_at, updated_at }) => {
   return (
     <li className="relative" style={{ opacity: 1, height: 'auto', overflow: 'hidden' }}>
       <div className="group relative active:opacity-90">
         <a
-          href={`/c/${id}`}
+          href={`/c/${chat_id}`}
           className="flex items-center gap-2 rounded-lg p-2 hover:bg-token-surface-primary"
         >
           <div className="relative grow overflow-hidden whitespace-nowrap dark:text-gray-100 text-gray-800">
@@ -38,7 +40,7 @@ const ChatList: React.FC<ChatListProps> = ({ chats, label }) => {
       </h3>
       <ol>
         {chats.map((chat) => (
-          <Chat key={chat.id} id={chat.id} title={chat.title} create_time={chat.create_time} update_time={chat.update_time} />
+          <Chat key={chat.chat_id} chat_id={chat.chat_id} title={chat.title} created_at={chat.created_at} updated_at={chat.updated_at} />
         ))}
       </ol>
     </div>
@@ -46,4 +48,3 @@ const ChatList: React.FC<ChatListProps> = ({ chats, label }) => {
 };
 
 export default ChatList;
-

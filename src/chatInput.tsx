@@ -1,4 +1,4 @@
-import React, { useState, KeyboardEvent } from 'react';
+import React, { useState, KeyboardEvent, useRef, useEffect } from 'react';
 import SendIcon from './assets/sendIcon';
 import './App.css';
 
@@ -10,6 +10,7 @@ interface ChatInputProps {
 
 const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage }) => {
     const [message, setMessage] = useState<string>('');
+    const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
     const handleSendMessage = () => {
         if (message.trim()) {
@@ -25,6 +26,12 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage }) => {
         }
       };
 
+    useEffect(() => {
+        if (textAreaRef.current) {
+            textAreaRef.current.style.height = '52px'; // start from 52px
+            textAreaRef.current.style.height = `${textAreaRef.current.scrollHeight}px`; // then increase by its scrollHeight
+        }
+    }, [message]);
 
     return (
         <div className="w-full pt-2 md:pt-0 dark:border-white/20 md:border-transparent md:dark:border-transparent md:w-[calc(100%-.5rem)]">
@@ -33,12 +40,13 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage }) => {
                     <div className="flex w-full items-center">
                         <div className="overflow-hidden flex flex-col w-full dark:border-token-border-heavy flex-grow relative border border-token-border-heavy dark:text-white rounded-2xl bg-white dark:bg-gray-800 shadow-[0_0_0_2px_rgba(255,255,255,0.95)] dark:shadow-[0_0_0_2px_rgba(52,53,65,0.95)]">
                             <textarea
+                                ref={textAreaRef}
                                 id="prompt-textarea"
                                 tabIndex={0}
                                 rows={1}
                                 placeholder="Message ChatGPT…"
                                 className="m-0 w-full resize-none border-0 bg-transparent py-[10px] pr-10 focus:ring-0 focus-visible:ring-0 dark:bg-transparent md:py-3.5 md:pr-12 placeholder-black/50 dark:placeholder-white/50 pl-10 md:pl-[55px]"
-                                style={{ maxHeight: '200px', height: '52px', overflowY: 'hidden' }}
+                                style={{ maxHeight: '200px', overflowY: 'auto' }}
                                 value={message}
                                 onKeyDown={handleKeyPress}
                                 onChange={(e) => setMessage(e.target.value)}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 interface NewChatButtonProps {
   onClick: () => void;
@@ -8,7 +9,8 @@ const NewChatButton: React.FC<NewChatButtonProps> = ({ onClick }) => {
   return (
     <div className="sticky left-0 right-0 top-0 bg-black pt-3.5 ">
       <div className="pl-1 pb-0.5 last:pb-0 hover:bg-token-surface-primary cursor-pointer rounded-lg items-center justify-center border border-opacity-90">
-        <button
+        <Link
+          to="/"
           className="group flex h-10 items-center gap-2 px-2 font-medium text-white items-center "
           onClick={onClick}
         >
@@ -27,7 +29,7 @@ const NewChatButton: React.FC<NewChatButtonProps> = ({ onClick }) => {
               fill="currentColor"
             />
           </svg>
-        </button>
+        </Link>
       </div>
     </div>
   );

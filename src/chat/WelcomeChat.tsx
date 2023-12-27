@@ -5,7 +5,7 @@ import Logo from '../assets/abstract.png';
 const WelcomeChat: React.FC = () => {
 
     return (
-        <div className="flex h-full flex-col">
+        <div className="flex h-full flex-col justify-center">
             <div className="flex-1 overflow-hidden">
                 <div className="relative h-full">
                     <div className="flex h-full flex-col items-center justify-center items-center">
