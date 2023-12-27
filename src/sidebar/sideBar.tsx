@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useCallback, useRef} from 'react';
-import fetchUserConversations from '../utils/GetConversations';
-import {supabase} from '../auth/SupabaseClient';
+import fetchUserConversations from '../utils/getConversations';
 import { ChatEntry } from './ChatList'; // Make sure this path is correct
 import ChatList from './ChatList';
 import NewChatButton from './NewChatButton';
