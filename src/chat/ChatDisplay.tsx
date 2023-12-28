@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import ChatInput from "../chatInput";
 import WelcomeChat from "./WelcomeChat";
 import ChatMessage from './ChatMessage';
+import ModelSelector from "./ModelSelector";
+import { CurrentModelProvider } from "./ModelContext/ModelContext";
 
 export interface ChatDisplayProps {
     id?: string;
@@ -42,13 +44,17 @@ const ChatDisplay: React.FC<ChatDisplayProps> = ({ id }) => {
                 {id || convoId ? (
                     <div className="w-full flex flex-col flex-1 justify-between">
                         <div className="flex flex-col pb-9 text-sm">
+                            <ModelSelector />
                             {messages.map((message) => (
                                 <ChatMessage key={message.id} role={message.role} content={message.content} />
                             ))}
                         </div>
                     </div>
                 ) : (
-                    <WelcomeChat />
+                    <>
+                        <ModelSelector />
+                        <WelcomeChat />
+                    </>
                 )}
             </div>
             <ChatInput onSendMessage={handleNewMessage} />

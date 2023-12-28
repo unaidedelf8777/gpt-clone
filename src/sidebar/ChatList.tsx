@@ -1,5 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
+
+import ChatMenu from './ChatMenu';
+
 
 export interface ChatEntry {
   chat_id: string;
@@ -11,18 +14,22 @@ export interface ChatEntry {
 }
 
 const Chat: React.FC<ChatEntry> = ({ chat_id, title, created_at, updated_at }) => {
+  
+  const location = useLocation();
+  const isActive = location.pathname === `/c/${chat_id}`;
+
   return (
     <li className="relative" style={{ opacity: 1, height: 'auto', overflow: 'hidden' }}>
       <div className="group relative active:opacity-90">
-        <Link
+        <NavLink
           to={`/c/${chat_id}`}
-          className="flex items-center gap-2 rounded-lg p-2 hover:bg-token-surface-primary active:bg-token-surface-primary"
+          className={`flex items-center gap-2 rounded-lg p-2 hover:bg-token-surface-primary ${isActive ? 'bg-token-surface-primary ' : ''}`}
         >
           <div className="relative grow overflow-hidden whitespace-nowrap dark:text-gray-100 text-gray-800">
             {title}
-            <div className="absolute bottom-0 right-0 top-0 w-8 bg-gradient-to-l to-transparent from-token-surface-primary group-hover:from-token-surface-primary dark:from-black"></div>
+            <div className={`absolute bottom-0 right-0 top-0 w-8 bg-gradient-to-l to-transparent from-token-surface-primary group-hover:from-token-surface-primary ${isActive ? '' : 'dark:from-black'}`}></div>
           </div>
-        </Link>
+        </NavLink>
       </div>
     </li>
   );
