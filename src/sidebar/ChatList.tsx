@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export interface ChatEntry {
   chat_id: string;
@@ -13,15 +14,15 @@ const Chat: React.FC<ChatEntry> = ({ chat_id, title, created_at, updated_at }) =
   return (
     <li className="relative" style={{ opacity: 1, height: 'auto', overflow: 'hidden' }}>
       <div className="group relative active:opacity-90">
-        <a
-          href={`/c/${chat_id}`}
-          className="flex items-center gap-2 rounded-lg p-2 hover:bg-token-surface-primary"
+        <Link
+          to={`/c/${chat_id}`}
+          className="flex items-center gap-2 rounded-lg p-2 hover:bg-token-surface-primary active:bg-token-surface-primary"
         >
           <div className="relative grow overflow-hidden whitespace-nowrap dark:text-gray-100 text-gray-800">
             {title}
             <div className="absolute bottom-0 right-0 top-0 w-8 bg-gradient-to-l to-transparent from-token-surface-primary group-hover:from-token-surface-primary dark:from-black"></div>
           </div>
-        </a>
+        </Link>
       </div>
     </li>
   );

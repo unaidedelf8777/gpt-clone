@@ -7,6 +7,7 @@ import ChatDisplay from './chat/ChatDisplay.tsx';
 import AuthModal from './auth/AuthModal.tsx';
 import { supabase } from './auth/SupabaseClient.tsx';
 import { Session } from '@supabase/supabase-js';
+import { ChatProvider } from './sidebar/ChatContext.tsx';
 
 const App: React.FC = () => {
 
@@ -65,27 +66,29 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="relative z-0 flex h-full w-full overflow-hidden">
-      <Router>
-        <div className="relative z-0 flex h-full w-full overflow-hidden">
-          <Sidebar sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} logout={logout} session={session}/>
-          <div className="relative flex h-full max-w-full flex-1 flex-col overflow-hidden">
-            <main className="relative h-full w-full flex-1 overflow-auto transition-width">
-              <SidebarToggle onClick={toggleSidebar} isOpen={sidebarOpen} />
-              <Routes>
-                <Route path="/" element={getChatDisplay("/")} />
-                <Route path="/c/:id" element={getChatDisplay("/c/:id")} />
-              </Routes>
-            </main>
+    <ChatProvider>
+      <div className="relative z-0 flex h-full w-full overflow-hidden">
+        <Router>
+          <div className="relative z-0 flex h-full w-full overflow-hidden">
+            <Sidebar sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} logout={logout} session={session} />
+            <div className="relative flex h-full max-w-full flex-1 flex-col overflow-hidden">
+              <main className="relative h-full w-full flex-1 overflow-auto transition-width">
+                <SidebarToggle onClick={toggleSidebar} isOpen={sidebarOpen} />
+                <Routes>
+                  <Route path="/" element={getChatDisplay("/")} />
+                  <Route path="/c/:id" element={getChatDisplay("/c/:id")} />
+                </Routes>
+              </main>
+            </div>
           </div>
-        </div>
-      </Router>
-      {!user_logged_in && !loading && ( // Render AuthModal based on both user_logged_in and loading
-        <div className="absolute inset-0">
-          <AuthModal />
-        </div>
-      )}
-    </div>
+        </Router>
+        {!user_logged_in && !loading && ( // Render AuthModal based on both user_logged_in and loading
+          <div className="absolute inset-0">
+            <AuthModal />
+          </div>
+        )}
+      </div>
+    </ChatProvider>
   );
 }
 
