@@ -3,7 +3,11 @@ import Jdenticon from './Jdenticon';
 import { useAuth } from '../auth/useAuth';
 import { useAvatar } from './useAvatar';
 
-const Avatar = () => {
+interface AvatarProps {
+    className?: string;
+}
+
+const Avatar: React.FC<AvatarProps> = ({ className }) => {
     const avatarRef = useRef(null);
     const { session, setSession } = useAuth(); // react context holding the supa session, and set fn
     const { avatar, setAvatar } = useAvatar();
@@ -21,15 +25,13 @@ const Avatar = () => {
     }, [session, avatar]); // Use session in the dependency array
 
     return (
-        <div>
             <div className="pt-0.5">
-                <div className="gizmo-shadow-stroke flex h-6 w-6 items-center justify-center overflow-hidden rounded-full">
+                <div className={`gizmo-shadow-stroke flex items-center justify-center overflow-hidden rounded-full ${className}`}>
                     <div className="relative flex">
                         {avatar}
                     </div>
                 </div>
-            </div>
-        </div>)
+            </div>)
 };
 
 export default Avatar;

@@ -78,7 +78,7 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ id, role, content, reload, is
         <div className="flex flex-1 text-base mx-auto gap-3 md:px-5 lg:px-1 xl:px-5 md:max-w-3xl lg:max-w-[40rem] xl:max-w-[48rem] group agent-turn">
           <div className="flex-shrink-0 flex flex-col relative items-end">
             {userAvatar ? (
-              <Avatar />
+              <Avatar className='h-6 w-6' />
             ) : (
               <div>
                 <div className="pt-0.5">

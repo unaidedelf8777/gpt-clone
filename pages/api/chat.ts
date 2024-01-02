@@ -4,6 +4,7 @@ import { OpenAIStream, StreamingTextResponse } from 'ai';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 const openai = new OpenAI({
+  apiKey: "iujyhfrugjkjugfv",
   baseURL: "http://localhost:1234/v1/", // LM studio default for now
 });
  
